@@ -16,7 +16,7 @@ export default class LatticeSideInput extends Component {
                         fullWidth={false}
                     />
                     <FlatButton 
-                        label="Generate new lattice"
+                        label='Generate new lattice'
                         onClick={this.handleButtonClick} 
                     />
                 </div> 

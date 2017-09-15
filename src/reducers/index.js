@@ -5,7 +5,7 @@ import lattice from './lattice';
 
 export default combineReducers({
     latticeSide: latticeSide,
-    latticeSize: latticeSize,
+    latticeSize: latticeSize, // delete?
     lattice: lattice
     // treeSize: treeSize,
     // itPercolates: itPercolates

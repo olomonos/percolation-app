@@ -10,3 +10,5 @@ export default (latticeSize = 0, action) => {
             return latticeSize;
     }
 }
+
+// Delete this file?
