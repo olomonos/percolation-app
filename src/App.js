@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import LatticeSideInput from './containers/lattice-side-input-container';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
+        <LatticeSideInput />
       </div>
     );
   }
