@@ -1,13 +1,16 @@
 import {connect} from 'react-redux';
 import Lattice from '../components/lattice';
-// import changeLatticeSide from '../actions/change-lattice-side';
-// import generate from '../actions/generate';
+import changeCellState from '../actions/change-cell-state';
 
 export default connect(
     state => ({
-        lattice: state.lattice
+        lattice: state.lattice,
+        openCells: state.openCells
     }),
     dispatch => ({
+        onCellClick: (openCells, cellIndex) => {
+            dispatch(changeCellState(openCells, cellIndex));
+        }
         // onInputChange: value => dispatch(changeLatticeSide(value)),
         // onButtonClick: (side) => {
         //     dispatch(generate(side)); 

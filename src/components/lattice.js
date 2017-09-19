@@ -3,26 +3,33 @@ import React, {Component} from 'react';
 export default class Lattice extends Component {
 
     render() {
-        const {lattice} = this.props;
+        const {lattice, openCells, onCellClick} = this.props;
         const buttons = [];
 
-        const styles = {
-            cell: {
-                width: '25px',
-                height: '25px',
-                backgroundColor: 'black'
-            }
-        };
+        // const styles = {
+        //     cell: {
+        //         width: '25px',
+        //         height: '25px',
+        //         backgroundColor: 'black'
+        //     }
+        // };
 
         for (let i = 0; i < lattice.length; i++) {
-                buttons.push(
-                    <button 
-                        key={i}
-                        /* onClick={}  */
-                        className="cell"
-                        style={styles.cell}>
-                    </button>
-                )
+
+            let cellColor = this.props.openCells[i] ? 'white' : 'black';
+            
+            buttons.push(
+                <button 
+                    key={i}
+                    value={i}
+                    onClick={this.handleCellClick}
+                    className='cell'
+                    style={{
+                        width: '25px', 
+                        height: '25px', 
+                        backgroundColor: cellColor}}>
+                </button>
+            )
         }
 
         return (
@@ -30,6 +37,10 @@ export default class Lattice extends Component {
                 {buttons}
             </div>
         );
+    }
+
+    handleCellClick = e => {
+        this.props.onCellClick(this.props.openCells, e.target.value)
     }
 }
 
