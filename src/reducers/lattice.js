@@ -2,7 +2,7 @@ import {type as generate} from '../actions/generate';
 import {type as changeCellState} from '../actions/change-cell-state';
 import {connect} from '../percolator';
 
-export default (lattice = [], action) => {
+export default (latticeStructure = {lattice: [], treeSize: []}, action) => {
     switch (action.type) {
         case generate:
 
@@ -12,9 +12,18 @@ export default (lattice = [], action) => {
             for (let i = 0; i < size; i++) {
                 newLattice[i] = i;
             }
-            return [...newLattice];
 
-        case changeCellState:                       // not weighted trees!!!
+            let newTreeSize = [];
+            for (let j = 0; j < size; j++) {
+                newTreeSize[j] = 1;
+            }
+
+            return {
+                lattice: newLattice,
+                treeSize: newTreeSize
+            };
+
+        case changeCellState:
 
             // Only can connect, not disconnect!!!
             // Connect() should be called only if openCells[index] is true,
@@ -22,9 +31,10 @@ export default (lattice = [], action) => {
 
             let index = Number(action.payload.cellIndex);
             let openCells = [...action.payload.openCells];
-            let changedLattice = [...lattice];
+            let changedLattice = [...latticeStructure.lattice];
             let latticeSize = changedLattice.length;
             let latticeSide = Math.sqrt(latticeSize);
+            let changedTreeSize = [...latticeStructure.treeSize];
             
             let topIndex = index - latticeSide;
             let bottomIndex = index + latticeSide;
@@ -33,26 +43,29 @@ export default (lattice = [], action) => {
 
             if ((topIndex >= 0) && (topIndex < latticeSize) && 
             openCells[topIndex]) {
-                changedLattice = connect(changedLattice, index, topIndex);
+                changedLattice = connect(changedLattice, changedTreeSize, index, topIndex);
             }
             if ((bottomIndex >= 0) && (bottomIndex < latticeSize) &&
             openCells[bottomIndex]) {
-                changedLattice = connect(changedLattice, index, bottomIndex);
+                changedLattice = connect(changedLattice, changedTreeSize, index, bottomIndex);
             }
             if ((leftIndex >= 0) && (leftIndex < latticeSize) &&
             openCells[leftIndex]) {
-                changedLattice = connect(changedLattice, index, leftIndex);
+                changedLattice = connect(changedLattice, changedTreeSize, index, leftIndex);
             }
             if ((rightIndex >= 0) && (rightIndex < latticeSize) &&
             openCells[rightIndex]) {
-                changedLattice = connect(changedLattice, index, rightIndex);
+                changedLattice = connect(changedLattice, changedTreeSize, index, rightIndex);
             }
 
-            return changedLattice;
+            return {
+                lattice: changedLattice,
+                treeSize: changedTreeSize
+            };
 
         default:
-            return lattice;
-    }
+            return latticeStructure;
+}
 }
 
 // is it ok to calculate size from the same input again if I already have it in 

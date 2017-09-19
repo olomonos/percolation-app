@@ -6,9 +6,10 @@ export default (itPercolates = false, action) => {
     switch (action.type) {
         case percolationButtonClick:
 
-            let lattice = [...action.payload.lattice];
+            let lattice = [...action.payload.latticeStructure.lattice];
             let latticeSize = lattice.length;
             let latticeSide = Math.sqrt(latticeSize);
+            let treeSize = [...action.payload.latticeStructure.treeSize];
             let percolation = false;
             
             let startIndex = latticeSize;
@@ -17,11 +18,11 @@ export default (itPercolates = false, action) => {
             lattice.push(endIndex);
                         
             for (let i = 0; i < latticeSide; i++) {
-                connect(lattice, i, startIndex);
+                connect(lattice, treeSize, i, startIndex);
             }
 
             for (let j = latticeSize - latticeSide; j < latticeSize; j++) {
-                connect(lattice, j, endIndex);
+                connect(lattice, treeSize, j, endIndex);
             }
 
             percolation = isJoined(lattice, startIndex, endIndex);

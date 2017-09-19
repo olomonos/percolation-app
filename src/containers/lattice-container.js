@@ -4,7 +4,7 @@ import changeCellState from '../actions/change-cell-state';
 
 export default connect(
     state => ({
-        lattice: state.lattice,
+        lattice: state.latticeStructure.lattice,
         openCells: state.openCells
     }),
     dispatch => ({
