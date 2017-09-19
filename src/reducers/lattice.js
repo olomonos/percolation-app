@@ -16,12 +16,10 @@ export default (lattice = [], action) => {
 
         case changeCellState:                       // not weighted trees!!!
 
-            // Only can connect, no disconnect!!!
+            // Only can connect, not disconnect!!!
             // Connect() should be called only if openCells[index] is true,
             // else call disconnect().
 
-            // let index = action.payload.cellIndex;
-            // let indexType = typeof index;     (string!!!)
             let index = Number(action.payload.cellIndex);
             let openCells = [...action.payload.openCells];
             let changedLattice = [...lattice];
@@ -59,8 +57,3 @@ export default (lattice = [], action) => {
 
 // is it ok to calculate size from the same input again if I already have it in 
 // the store?
-
-
-// is it ok to use state.latticeSide here if I don't have it in the initial state?
-
-// store.getState() ?

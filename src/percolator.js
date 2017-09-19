@@ -21,6 +21,7 @@ export function getRoot(array, index) {
     return index;
 }
 
+// weighted trees
 export function connect(array, x, y) {
     let rootX = getRoot(array, x);
     let rootY = getRoot(array, y);
@@ -33,12 +34,6 @@ export function connect(array, x, y) {
 export function isJoined(array, x, y) {
     let rootX = getRoot(array, x);
     let rootY = getRoot(array, y);
-    // return (rootX == rootY) ? true : false;
-    let joined = false;
-    if (rootX == rootY) {
-        joined = true;
-    } else {
-        joined = false;
-    }
+    let joined = (rootX == rootY) ? true : false;
     return joined;
 }
