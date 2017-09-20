@@ -5,6 +5,9 @@ export default class Lattice extends Component {
     render() {
         const {lattice, openCells, onCellClick} = this.props;
         const buttons = [];
+        const buttonSize = 25;
+        const buttonsQuantity = Math.sqrt(lattice.length);
+        const latticeAreaWidth = buttonsQuantity * buttonSize;
 
         // const styles = {
         //     cell: {
@@ -25,16 +28,18 @@ export default class Lattice extends Component {
                     onClick={this.handleCellClick}
                     className='cell'
                     style={{
-                        width: '25px', 
-                        height: '25px', 
+                        width: buttonSize.toString() + 'px', 
+                        height: buttonSize.toString() + 'px', 
                         backgroundColor: cellColor}}>
                 </button>
             )
         }
 
         return (
-            <div className='latticeArea'> 
-                {buttons}
+            <div 
+                className='latticeArea' 
+                style={{width: latticeAreaWidth.toString() + 'px'}}> 
+                    {buttons}
             </div>
         );
     }

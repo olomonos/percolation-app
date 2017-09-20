@@ -11,9 +11,5 @@ export default connect(
         onCellClick: (openCells, cellIndex) => {
             dispatch(changeCellState(openCells, cellIndex));
         }
-        // onInputChange: value => dispatch(changeLatticeSide(value)),
-        // onButtonClick: (side) => {
-        //     dispatch(generate(side)); 
-        // }
     })
 )(Lattice);
