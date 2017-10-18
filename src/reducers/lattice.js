@@ -1,6 +1,6 @@
 import {type as generate} from '../actions/generate';
 import {type as changeCellState} from '../actions/change-cell-state';
-import {connect} from '../percolator';
+import {connect, Lattice} from '../percolator';
 
 export default (latticeStructure = {lattice: [], treeSize: []}, action) => {
     switch (action.type) {

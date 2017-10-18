@@ -5,12 +5,13 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import reducers from './reducers';
+import percolator from './middlewares/percolator';
 
 ReactDOM.render(
     <MuiThemeProvider>
-        <Provider store={createStore(reducers)}>
+        <Provider store={createStore(reducers, applyMiddleware(percolator))}>
             <App />
         </Provider>
     </MuiThemeProvider>, 

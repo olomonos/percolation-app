@@ -3,10 +3,10 @@ import React, {Component} from 'react';
 export default class Lattice extends Component {
 
     render() {
-        const {lattice, openCells, onCellClick} = this.props;
+        const {openCells, onCellClick} = this.props;
         const buttons = [];
         const buttonSize = 25;
-        const buttonsQuantity = Math.sqrt(lattice.length);
+        const buttonsQuantity = Math.sqrt(openCells.length);
         const latticeAreaWidth = buttonsQuantity * buttonSize;
 
         // const styles = {
@@ -17,9 +17,9 @@ export default class Lattice extends Component {
         //     }
         // };
 
-        for (let i = 0; i < lattice.length; i++) {
+        for (let i = 0; i < openCells.length; i++) {
 
-            let cellColor = this.props.openCells[i] ? 'white' : 'black';
+            let cellColor = openCells[i] ? 'white' : 'black';
             
             buttons.push(
                 <button 
@@ -48,6 +48,3 @@ export default class Lattice extends Component {
         this.props.onCellClick(this.props.openCells, e.target.value)
     }
 }
-
-// .latticeArea should be flexible (from the number of lattice elements), but
-// always square 

@@ -4,12 +4,11 @@ import percolationButtonClick from '../actions/percolation-button-click';
 
 export default connect(
     state => ({
-        latticeStructure: state.latticeStructure,
-        itPercolates: state.itPercolates
+        isPercolated: state.isPercolated
     }),
     dispatch => ({
-        onButtonClick: (latticeStructure) => {
-            dispatch(percolationButtonClick(latticeStructure)); 
+        onButtonClick: () => {
+            dispatch(percolationButtonClick()); 
         }
     })
 )(Percolation);

@@ -6,7 +6,7 @@ import TextField from 'material-ui/TextField';
 export default class Percolation extends Component {
 
     render() {
-        const {latticeStructure, itPercolates, onButtonClick } = this.props;
+        const {isPercolated, onButtonClick} = this.props;
 
         const style = {
             height: 100,
@@ -20,7 +20,7 @@ export default class Percolation extends Component {
                 <div>
                     <FlatButton 
                         label='Does it percolate?'
-                        onClick={this.handleButtonClick} 
+                        onClick={onButtonClick} 
                     />
                     {/* <Paper 
                         style={style}
@@ -28,15 +28,11 @@ export default class Percolation extends Component {
                     /> */}
                     <TextField
                         id='percolationOutput'
-                        value={itPercolates}
+                        value={isPercolated}
                         fullWidth={false}
                     />
 
                 </div> 
         );
-    }
-
-    handleButtonClick = () => {
-        this.props.onButtonClick(this.props.latticeStructure)
     }
 }
