@@ -2,4 +2,4 @@ This project is the first assignment from the Coursera course "Algorithms, Part 
 
 ### Website
 
-You can try percolation-app [here](https://github.com/olomonos/percolation-app).
+You can try percolation-app [here](https://olomonos.github.io/percolation-app).
